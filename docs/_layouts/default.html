@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-{% include head.html %}
 
-<body>
-  {% if site.google-analytics %}
-    {% include analytics.html %}
+  {% include head.html %}
+  
+  {% if page.url == '/' %}
+    {% assign class = 'body-post' %}
+  <body class="{{ class }}">
   {% endif %}
-  <div class="o-wrapper">
-    {{ content }}
-  </div> <!-- /.o-wrapper -->
-  <div class="c-top" data-icon='ei-chevron-up' data-size='s' title="Scroll To Top"></div> <!-- /.c-top -->
-  {% include javascripts.html %}
-</body>
+  
+    {% if site.google-analytics %}
+      {% include google-analytics.html %}
+    {% endif %}
+
+    <div class="full-page-container">
+      <div class="overlay"></div>
+      {% include header.html %}
+      {% include search.html %}
+
+        {{ content }}
+
+      {% include scroll-top.html %}
+      {% include footer.html %}
+    </div> <!-- /.full-page-container -->
+
+    {% include javascripts.html %}
+  </body>
+
 </html>

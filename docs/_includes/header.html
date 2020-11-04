@@ -1,20 +1,30 @@
-<header class="c-header">
-  <div class="c-header__box">
-    <div class="c-search">
-      <div class="c-search__box">
-        <label for="js-search-input" class="u-screen-reader-text">Search for Blog</label>
-        <input type="text" id="js-search-input" class="c-search__text" autocomplete="off" placeholder="Type to search...">
-        <div data-icon='ei-search' data-size='s'></div>
-      </div>
-      <ul id="js-results-container" class="c-search-results-list"></ul>
+<header class="site-header clearfix">
+  <div class="wrapper-content">
+
+    <div class="navigation-wrap">
+      <div class="nav-toggle-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+      <nav class="site-nav">
+        {% for page in site.pages %}
+          {% unless page.name == 'tags.html' or page.name == '404.html' %}
+            {% if page.title %}
+              <a href='{{ page.url | prepend: site.baseurl }}'>{{ page.title }}</a>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+      </nav>
+
     </div>
-    <div class="c-nav">
-      <ul class="c-nav__list u-lists-reset">
-        <li class="c-nav__item is-active">
-          <div data-icon='ei-pencil' data-size='s'></div> Posts</li>
-        <li class="c-nav__item">
-          <div data-icon='ei-star' data-size='s'></div> Categories</li>
-      </ul>
+
+    <span class="search-toggle">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </span>
+    
+    <div class="nav-toggle"><i class="fa fa-bars" aria-hidden="true"></i></div>
+
+    <div class="site-logo">
+      <a href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
     </div>
+    
   </div>
-</header> <!-- /.c-header -->
+</header> <!-- /.site-header -->
